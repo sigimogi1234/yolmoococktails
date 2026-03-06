@@ -13,8 +13,46 @@
     <script src="script.js" defer></script>
 </head>
 
+<!-- 리뷰 모달 -->
+<div id="reviewModal" class="review-modal">
+    <div class="review-box">
+        <button class="close-btn" id="closeReview">
+            <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 11L1 1M1 11L11 1" stroke="#aaa" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+
+        <h3>앱이 도움이 되었나요?</h3>
+        <p>조주기능사 준비에 도움이 되셨다면<br>따뜻한 응원을 보내주세요! 🙏</p>
+
+        <div class="review-buttons">
+            <button id="btnPositive" class="rev-btn positive">정말 도움이 돼요! 😊</button>
+            <button id="btnNegative" class="rev-btn negative">아직은 잘 모르겠어요</button>
+        </div>
+    </div>
+</div>
+
 <body>
-    <div class="contents">
+    <div class="quizContents contents">
+        <div class="subConTitle quizTitle">
+            <p>퀴즈</p>
+        </div>
+        <div class="cardWrap">
+            
+        </div>
+        <div class="answerNextBtnWrap">
+            <div class="answerBtn">
+                <img src="img/answerBtn.svg" alt="">
+                <div class="answerText">정답 확인</div>
+            </div>
+            <div class="nextBtn">
+                <div class="nextText">다음 문제</div>
+                <img src="img/nextBtn.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="homeContents contents on">
         <div class="searchWrap">
             <h1 class="logo">
                 <img src="img/logo.svg" alt="logo">
@@ -23,6 +61,17 @@
                 <img src="img/ic_search.svg" alt="" class="ic_search">
                 <input type="text" class="searchInput" placeholder="탄산수, 캄파리...">
                 <img src="img/ic_close.svg" alt="" class="ic_close">
+            </div>
+            <div class="memorise">
+                <div class="progress-bg"></div> <!-- 반드시 추가 -->
+                <div class="memorise-title">
+                    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#fff" />
+                        <path d="M5 9L9 13L15 7" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="memorise-progress">0%</span>
+                    <span class="memorise-text">암기</span>
+                </div>
             </div>
         </div>
 
@@ -153,7 +202,11 @@
                         <div class="swiper-slide ooo">1:1:1</div>
                         <div class="swiper-slide ont">1:1/2</div>
                         <div class="swiper-slide sgr">설탕</div>
+                        <div class="swiper-slide tri">트리플 섹</div>
                         <div class="swiper-slide grs">그레나딘 시럽</div>
+                        <div class="swiper-slide sow">탄산수</div>
+                        <div class="swiper-slide ang">앙고스투라 비터스</div>
+                        <div class="swiper-slide cam">캄파리</div>
                     </div>
                 </div>
 
@@ -163,7 +216,7 @@
         </div>
     
         <div class="cardWrap">
-            <div class="card manhattan allall whk cok str chr" data-id="manhattan">
+            <div class="card manhattan allall whk cok str chr ang" data-id="manhattan">
                 <div class="titleWrap">
                     <div class="title">맨해튼</div>
                     <div class="titleEng">Manhattan</div>
@@ -204,14 +257,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card oldFashioned allall whk ofd bld orsnchr sgr" data-id="oldFashioned">
+            <div class="card oldFashioned allall whk ofd bld orsnchr sgr sow ang" data-id="oldFashioned">
                 <div class="titleWrap">
                     <div class="title">올드패션드</div>
                     <div class="titleEng">Old Fashioned</div>
@@ -257,9 +320,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -303,14 +376,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card whiskeySour allall whk sur bld lmsnchr sgr" data-id="">
+            <div class="card whiskeySour allall whk sur bld lmsnchr sgr sow" data-id="whiskeySour">
                 <div class="titleWrap">
                     <div class="title">위스키 사워</div>
                     <div class="titleEng">Whiskey Sour</div>
@@ -356,14 +439,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card boulevardier allall whk ofd str top ooo" data-id="boulevardier">
+            <div class="card boulevardier allall whk ofd str top ooo cam" data-id="boulevardier">
                 <div class="titleWrap">
                     <div class="title">불바디에</div>
                     <div class="titleEng">Boulevardier</div>
@@ -408,9 +501,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -450,14 +553,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card sideCar allall brd cok shk" data-id="sideCar">
+            <div class="card sideCar allall brd cok shk tri" data-id="sideCar">
                 <div class="titleWrap">
                     <div class="title">사이드 카</div>
                     <div class="titleEng">Side Car</div>
@@ -490,9 +603,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -542,14 +665,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card honeymoon allall brd cok shk" data-id="honeymoon">
+            <div class="card honeymoon allall brd cok shk tri" data-id="honeymoon">
                 <div class="titleWrap">
                     <div class="title">허니문</div>
                     <div class="titleEng">Honeymoon</div>
@@ -594,9 +727,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -629,9 +772,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -670,9 +823,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -711,14 +874,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card cosmopol allall vka cok shk tlp" data-id="cosmopol">
+            <div class="card cosmopol allall vka cok shk tlp tri" data-id="cosmopol">
                 <div class="titleWrap">
                     <div class="title">코스모폴리탄</div>
                     <div class="titleEng">Cosmopolitan</div>
@@ -757,9 +930,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -805,9 +988,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -846,9 +1039,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -892,14 +1095,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card maiTai allall rum pls bnd pawnchr grs" data-id="maiTai">
+            <div class="card maiTai allall rum pls bnd pawnchr grs tri" data-id="maiTai">
                 <div class="titleWrap">
                     <div class="title">마이-타이</div>
                     <div class="titleEng">Mai-Tai</div>
@@ -946,18 +1159,21 @@
                             <p class="vol">1/4 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>파인애플, 라임, 오렌지 3가지 주스 1 oz씩 들어가는거를 파라오로 외우기</p>
-                        </li>
-                    </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -996,9 +1212,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1043,9 +1269,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1094,9 +1330,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1134,14 +1380,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card margarita allall teq cok shk lim" data-id="margarita">
+            <div class="card margarita allall teq cok shk lim tri" data-id="margarita">
                 <div class="titleWrap">
                     <div class="title">마가리따</div>
                     <div class="titleEng">Margarita</div>
@@ -1175,9 +1431,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1218,14 +1484,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card negroni allall gin ofd bld tlp ooo" data-id="negroni">
+            <div class="card negroni allall gin ofd bld tlp ooo cam" data-id="negroni">
                 <div class="titleWrap">
                     <div class="title">네그로니</div>
                     <div class="titleEng">Negroni</div>
@@ -1266,14 +1542,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card singapore allall gin pls bld orsnchr sgr" data-id="singapore">
+            <div class="card singapore allall gin pls bld orsnchr sgr sow" data-id="singapore">
                 <div class="titleWrap">
                     <div class="title">싱가포르 슬링</div>
                     <div class="titleEng">Singapore Sling</div>
@@ -1328,14 +1614,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card ginFizz allall gin hbl bld lms sgr" data-id="ginFizz">
+            <div class="card ginFizz allall gin hbl bld lms sgr sow" data-id="ginFizz">
                 <div class="titleWrap">
                     <div class="title">진 피즈</div>
                     <div class="titleEng">Gin Fizz</div>
@@ -1381,14 +1677,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card longTea allall gin col bld lmw" data-id="longTea">
+            <div class="card longTea allall gin col bld lmw tri" data-id="longTea">
                 <div class="titleWrap">
                     <div class="title">롱 아일랜드 아이스 티</div>
                     <div class="titleEng">Long Island Iced Tea</div>
@@ -1449,9 +1755,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1501,9 +1817,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1548,9 +1874,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1614,9 +1950,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1665,9 +2011,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1716,9 +2072,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1763,14 +2129,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card freshLeomon allall vrg hbl bld lms sgr" data-id="freshLeomon">
+            <div class="card freshLeomon allall vrg hbl bld lms sgr sow" data-id="freshLeomon">
                 <div class="titleWrap">
                     <div class="title">프레시 레몬 스쿼시</div>
                     <div class="titleEng">Fresh Lemon Squash</div>
@@ -1819,9 +2195,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1886,9 +2272,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1932,9 +2328,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -1984,14 +2390,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card puppyLove allall trd cok shk aps" data-id="puppyLove">
+            <div class="card puppyLove allall trd cok shk aps tri" data-id="puppyLove">
                 <div class="titleWrap">
                     <div class="title">풋사랑</div>
                     <div class="titleEng">Puppy Love</div>
@@ -2037,9 +2453,19 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
@@ -2089,14 +2515,24 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
 
-            <div class="card gochang allall trd fss str" data-id="gochang">
+            <div class="card gochang allall trd fss str tri" data-id="gochang">
                 <div class="titleWrap">
                     <div class="title">고창</div>
                     <div class="titleEng">Gochang</div>
@@ -2140,25 +2576,85 @@
                     </ul>
                 </div>
                 <div class="completeBtn">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0.5" y="0.5" width="19" height="19" rx="9.5" stroke="#DBDBDB" />
-                        <path d="M5 9L9 13L15 7" stroke="#DBDBDB" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
+                            stroke-width="1.10769" />
+                        <path d="M22.4615 26.8921L26.8923 31.3229L33.5385 24.6768" stroke="#DBDBDB" stroke-width="1.10769"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="starBtn">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#DBDBDB" stroke-width="1.2" />
+                        <path
+                            d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                            stroke="#DBDBDB" stroke-width="1.2" />
                     </svg>
                 </div>
             </div>
         </div>
+
+        <div class="topVoid"></div>
     </div>
 
-    <div class="adZone">
-        <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M4 4L29 22.75M29 22.75L54 4M29 22.75V41.677C29 44.1317 28.2823 46.4188 27.0452 48.3398M27.0452 48.3398L15.9928 43.4868C14.3618 42.7706 12.4783 42.9352 10.9962 43.9232C7.7743 46.0711 7.92841 50.8554 11.2818 52.7915L11.5022 52.9187C12.7291 53.6271 14.1208 54 15.5376 54H16.677C21.0281 54 24.8525 51.745 27.0452 48.3398ZM27.0452 48.3398L31.8825 50.4639C36.9856 52.7046 42.8211 52.559 47.8061 50.0665L49.3125 49.3133"
-                stroke="#DD6464" stroke-width="6.73077" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+    <div class="starContents contents">
+        <div class="subConTitle starTitle">
+            <p>즐겨찾기</p>
+        </div>
+        <div class="cardWrap">
+
+        </div>
+        <div class="noStarredCard">
+            <div class="lineOne">
+                <p>즐겨찾기</p>
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="16.6" y="16.6" width="22.8" height="22.8" rx="11.4" stroke="#777" stroke-width="1.2" />
+                    <path
+                        d="M26.2918 24.0448C27.052 22.6816 27.4318 22 28 22C28.5682 22 28.948 22.6816 29.7082 24.0448L29.905 24.3976C30.1209 24.7852 30.2289 24.979 30.3969 25.1068C30.5649 25.2346 30.7749 25.282 31.1949 25.3768L31.5765 25.4632C33.0525 25.7974 33.7899 25.9642 33.9657 26.5288C34.1409 27.0928 33.6381 27.6814 32.6319 28.858L32.3715 29.1622C32.0859 29.4964 31.9425 29.6638 31.8783 29.8703C31.8141 30.0773 31.8357 30.3005 31.8789 30.7463L31.9185 31.1525C32.0703 32.7227 32.1465 33.5075 31.6869 33.8561C31.2273 34.2047 30.5361 33.8867 29.155 33.2507L28.7968 33.0863C28.4044 32.9051 28.2082 32.8151 28 32.8151C27.7918 32.8151 27.5956 32.9051 27.2032 33.0863L26.8456 33.2507C25.4639 33.8867 24.7727 34.2047 24.3137 33.8567C23.8535 33.5075 23.9297 32.7227 24.0815 31.1525L24.1211 30.7469C24.1643 30.3005 24.1859 30.0773 24.1211 29.8709C24.0575 29.6638 23.9141 29.4964 23.6285 29.1628L23.3681 28.858C22.3619 27.682 21.8591 27.0934 22.0343 26.5288C22.2095 25.9642 22.9481 25.7968 24.4241 25.4632L24.8057 25.3768C25.2251 25.282 25.4345 25.2346 25.6031 25.1068C25.7717 24.979 25.879 24.7852 26.095 24.3976L26.2918 24.0448Z"
+                        stroke="#777" stroke-width="1.2" />
+                </svg>
+                <p>버튼을 눌러</p>
+            </div>
+            <div class="lineTwo">
+                <p>원하는 레시피를 즐겨찾기해보세요!</p>
+            </div>
+        </div>
     </div>
+
+    <div class="btmNav">
+        <div class="navBtnWrap">
+            <div class="navBtn quizNav">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.1999 9.30075C10.1998 9.02105 10.265 8.74519 10.3901 8.49505C10.5152 8.24491 10.6969 8.02736 10.9208 7.85968C11.1447 7.692 11.4045 7.57879 11.6798 7.52904C11.9551 7.47929 12.2381 7.49436 12.5065 7.57306C12.7749 7.65177 13.0213 7.79193 13.2261 7.98244C13.4309 8.17295 13.5885 8.40856 13.6863 8.67058C13.7842 8.9326 13.8196 9.21382 13.7899 9.49192C13.7601 9.77002 13.6659 10.0374 13.5148 10.2727C12.9765 11.1097 12 11.9071 12 12.9007V13.3506M11.9928 16.5006H12.0009M10.6103 3.5769C10.7926 3.39404 11.0092 3.24895 11.2477 3.14996C11.4861 3.05096 11.7418 3 12 3C12.2582 3 12.5139 3.05096 12.7523 3.14996C12.9908 3.24895 13.2074 3.39404 13.3897 3.5769L14.2978 4.48678C14.6668 4.85577 15.1673 5.06276 15.6884 5.06276H16.9745C17.2326 5.06241 17.4882 5.11295 17.7266 5.2115C17.9651 5.31005 18.1818 5.45467 18.3643 5.63708C18.5468 5.81949 18.6916 6.03611 18.7902 6.27453C18.8889 6.51295 18.9396 6.76848 18.9393 7.02651L18.9384 8.31257C18.9384 8.83456 19.1454 9.33405 19.5145 9.70304L20.4235 10.612C20.6062 10.7943 20.7512 11.0108 20.8502 11.2491C20.9491 11.4875 21 11.743 21 12.0011C21 12.2592 20.9491 12.5147 20.8502 12.7531C20.7512 12.9915 20.6062 13.208 20.4235 13.3902L19.5145 14.2983C19.1454 14.6673 18.9384 15.1677 18.9384 15.6888V16.9748C18.9388 17.2329 18.8882 17.4884 18.7897 17.7269C18.6911 17.9654 18.5465 18.182 18.3641 18.3645C18.1816 18.547 17.965 18.6917 17.7266 18.7904C17.4881 18.8891 17.2326 18.9397 16.9745 18.9395L15.6884 18.9386C15.1664 18.9386 14.6668 19.1456 14.2978 19.5146L13.3888 20.4235C13.2065 20.6063 12.99 20.7512 12.7516 20.8502C12.5132 20.9491 12.2576 21 11.9996 21C11.7415 21 11.4859 20.9491 11.2475 20.8502C11.0091 20.7512 10.7926 20.6063 10.6103 20.4235L9.70219 19.5146C9.51973 19.3318 9.30296 19.1868 9.06434 19.0879C8.82571 18.9891 8.56991 18.9384 8.31162 18.9386H7.02546C6.76741 18.9389 6.51183 18.8884 6.27335 18.7898C6.03487 18.6913 5.81817 18.5467 5.63567 18.3643C5.45316 18.1819 5.30843 17.9652 5.20976 17.7268C5.11109 17.4884 5.06043 17.2329 5.06066 16.9748L5.06156 15.6888C5.06156 15.1668 4.85455 14.6673 4.48554 14.2983L3.57649 13.3893C3.39375 13.2071 3.24877 12.9906 3.14985 12.7522C3.05092 12.5138 3 12.2583 3 12.0002C3 11.7421 3.05092 11.4866 3.14985 11.2482C3.24877 11.0099 3.39375 10.7934 3.57649 10.6111L4.48554 9.70304C4.85455 9.33405 5.06156 8.83366 5.06156 8.31257V7.02651C5.06121 6.76856 5.11173 6.51307 5.21023 6.27467C5.30873 6.03626 5.45328 5.81962 5.63561 5.63714C5.81794 5.45466 6.03447 5.30992 6.2728 5.2112C6.51113 5.11249 6.76659 5.06174 7.02456 5.06186L8.31072 5.06276C8.83275 5.06276 9.33227 4.85577 9.70129 4.48678L10.6103 3.5769Z"
+                        stroke="#777777" stroke-linecap="round" />
+                </svg>
+                <p>퀴즈</p>
+            </div>
+            <div class="navBtn homeNav on">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.5 21V15.5001C9.5 14.9697 9.71071 14.461 10.0858 14.0859C10.4609 13.7108 10.9696 13.5001 11.5 13.5001H12.5C13.0304 13.5001 13.5391 13.7108 13.9142 14.0859C14.2893 14.461 14.5 14.9697 14.5 15.5001V21M6.133 21C4.955 21 4 20.02 4 18.81V10.0082C4 9.34318 4.295 8.71319 4.8 8.29819L10.667 3.48027C11.0419 3.16986 11.5133 3 12 3C12.4867 3 12.9581 3.16986 13.333 3.48027L19.199 8.29819C19.705 8.71319 20 9.34318 20 10.0082V18.81C20 20.02 19.045 21 17.867 21H6.133Z"
+                        stroke="#777777" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p>홈</p>
+            </div>
+            <div class="navBtn starNav">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.43776 6.06722C10.578 4.02241 11.1477 3 12 3C12.8523 3 13.422 4.02241 14.5622 6.06722L14.8574 6.59642C15.1814 7.17783 15.3434 7.46853 15.5954 7.66023C15.8474 7.85193 16.1624 7.92303 16.7924 8.06523L17.3648 8.19483C19.5787 8.69614 20.6848 8.94634 20.9485 9.79324C21.2113 10.6392 20.4571 11.5222 18.9478 13.2871L18.5572 13.7434C18.1289 14.2447 17.9138 14.4958 17.8175 14.8054C17.7212 15.1159 17.7536 15.4507 17.8184 16.1194L17.8778 16.7287C18.1055 19.084 18.2198 20.2612 17.5304 20.7841C16.841 21.307 15.8042 20.83 13.7325 19.876L13.1952 19.6294C12.6066 19.3576 12.3123 19.2226 12 19.2226C11.6877 19.2226 11.3934 19.3576 10.8048 19.6294L10.2684 19.876C8.19579 20.83 7.15901 21.307 6.47053 20.785C5.78025 20.2612 5.89454 19.084 6.12224 16.7287L6.18164 16.1203C6.24644 15.4507 6.27883 15.1159 6.18164 14.8063C6.08624 14.4958 5.87114 14.2447 5.44275 13.7443L5.05216 13.2871C3.5429 11.5231 2.78872 10.6401 3.05151 9.79324C3.3143 8.94634 4.42218 8.69524 6.63613 8.19483L7.20851 8.06523C7.8376 7.92303 8.15169 7.85193 8.40458 7.66023C8.65748 7.46853 8.81857 7.17783 9.14257 6.59642L9.43776 6.06722Z"
+                        stroke="#777777" />
+                </svg>
+                <p>즐겨찾기</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="adZone">
+    </div> -->
 
     <!-- 광고 스크립트 로딩 -->
     <!-- <script type="text/javascript" src="bannerAd.js"></script> -->
-    <!-- <script type="text/javascript" src="interstitialAd.js"></script> -->
+    <script type="text/javascript" src="interstitialAd.js"></script>
 </body>
 </html>

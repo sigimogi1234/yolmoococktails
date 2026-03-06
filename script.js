@@ -1,4 +1,77 @@
+// =========================
+// 리뷰 모달 개선판 (질문형)
+// =========================
+
+const TEST_MODE = false; // true로 설정하면 실제 리뷰 호출 없이 로직 테스트 가능
+
+const reviewModal = document.getElementById('reviewModal');
+const reviewBox = document.querySelector('.review-box');
+const closeBtn = document.getElementById('closeReview');
+const btnPositive = document.getElementById('btnPositive');
+const btnNegative = document.getElementById('btnNegative');
+const nextBtn = document.querySelector('.nextBtn');
+
+let quizCount = 0;
+
+function showReviewModal() {
+    reviewModal.classList.add('show');
+}
+
+function closeReviewModal() {
+    reviewModal.classList.remove('show');
+}
+
+// 닫기 로직
+closeBtn.addEventListener('click', closeReviewModal);
+reviewModal.addEventListener('click', (e) => {
+    if (!reviewBox.contains(e.target)) closeReviewModal();
+});
+
+// [긍정] 버튼 클릭 시
+btnPositive.addEventListener('click', async () => {
+    console.log("긍정 응답: 인앱 리뷰 호출");
+
+    try {
+        const InAppReview = window.Capacitor?.Plugins?.InAppReview;
+
+        if (InAppReview && typeof InAppReview.requestReview === 'function') {
+            if (!TEST_MODE) {
+                await InAppReview.requestReview();
+            } else {
+                console.log("테스트 모드: 실제 호출 시뮬레이션");
+            }
+        }
+    } catch (e) {
+        console.error("리뷰 호출 에러:", e);
+    }
+
+    closeReviewModal();
+    if (!TEST_MODE) localStorage.setItem('reviewShown', 'true');
+});
+
+// [부정] 버튼 클릭 시
+btnNegative.addEventListener('click', () => {
+    console.log("부정 응답: 모달만 닫음");
+    // 여기에 추가 피드백 링크(구글 폼 등)를 넣으면 더 좋습니다.
+    closeReviewModal();
+    if (!TEST_MODE) localStorage.setItem('reviewShown', 'true');
+});
+
+// 노출 조건 (5번 클릭 시)
+nextBtn.addEventListener('click', () => {
+    quizCount++;
+    if (quizCount >= 5 && (!localStorage.getItem('reviewShown') || TEST_MODE)) {
+        showReviewModal();
+    }
+});
+
+
+
+
+
+// =========================
 // 스와이퍼
+// =========================
 const swiper = new Swiper('.swiper', {
     freeMode: true,
     slidesPerView: "auto",
@@ -32,8 +105,6 @@ function updateFadeOverlay(swiperInstance) {
 
     if (!leftFade || !rightFade) return;
 
-    // console.log(swiperInstance.isBeginning, swiperInstance.isEnd); // 디버깅용
-
     if (swiperInstance.isBeginning) {
         leftFade.classList.add('fade-hidden');
     } else {
@@ -47,12 +118,20 @@ function updateFadeOverlay(swiperInstance) {
     }
 }
 
+// =========================
+// 로고 클릭 이벤트
+// =========================
+const logo = document.querySelector('.logo');
 
+logo.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    location.reload();
+});
 
-
-
-// 필터 및 정렬 기능 (DOMContentLoaded 제거 버전)
-const filterKeys = ['allall', 'whk', 'brd', 'vka', 'gin', 'rum', 'teq', 'lqr', 'trd', 'win', 'vrg', 'cok', 'ofd', 'hbl', 'pls', 'col', 'sur', 'lqg', 'swg', 'wig', 'sss', 'fss', 'str', 'bld', 'shk', 'bnd', 'flt', 'chr', 'lms', 'aps', 'lmw', 'tlp', 'top', 'orsnchr', 'pawnchr', 'lmsnchr', 'olv', 'lim', 'nmc', 'ooo', 'ont', 'sgr', 'grs'];
+// =========================
+// 필터 및 정렬 기능
+// =========================
+const filterKeys = ['allall', 'whk', 'brd', 'vka', 'gin', 'rum', 'teq', 'lqr', 'trd', 'win', 'vrg', 'cok', 'ofd', 'hbl', 'pls', 'col', 'sur', 'lqg', 'swg', 'wig', 'sss', 'fss', 'str', 'bld', 'shk', 'bnd', 'flt', 'chr', 'lms', 'aps', 'lmw', 'tlp', 'top', 'orsnchr', 'pawnchr', 'lmsnchr', 'olv', 'lim', 'nmc', 'ooo', 'ont', 'sgr', 'grs', 'tri', 'sow', 'ang', 'cam'];
 
 function filterCards(filterClass) {
     document.querySelectorAll('.cardWrap .card').forEach(card => {
@@ -63,27 +142,28 @@ function filterCards(filterClass) {
     });
 }
 
-// 1. 메인 정렬 li 클릭
+// =========================
+// mainSort li 클릭 이벤트
+// =========================
 setTimeout(() => {
     document.querySelectorAll('.mainSort li').forEach(mainItem => {
         mainItem.addEventListener('click', function () {
-            // 1. mainSort 상태 초기화 및 설정
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             document.querySelectorAll('.mainSort li').forEach(li => li.classList.remove('on'));
             this.classList.add('on');
 
-            // 2. subSort 초기화
+            // subSort 초기화
             document.querySelectorAll('.subSort .swiper').forEach(swiper => {
                 swiper.classList.remove('on');
                 swiper.querySelectorAll('.swiper-slide').forEach(slide => slide.classList.remove('on'));
             });
 
-            // 3. 활성화할 타겟 클래스 추출
+            // 활성화할 targetClass
             const targetClass = Array.from(this.classList).find(cls =>
                 ['all', 'base', 'glass', 'method', 'garnish', 'etc'].includes(cls)
             );
             if (!targetClass) return;
 
-            // 4. subSwiper 활성화 및 첫 슬라이드 처리
             const subSwiper = document.querySelector(`.${targetClass}Sub`);
             if (subSwiper) {
                 subSwiper.classList.add('on');
@@ -95,7 +175,6 @@ setTimeout(() => {
                 }
             }
 
-            // 5. topic li on 클래스 처리 (모든 .card에 대해 처리)
             const topicMap = {
                 base: 'baseTopic',
                 glass: 'glassTopic',
@@ -106,10 +185,10 @@ setTimeout(() => {
             const allCards = document.querySelectorAll('.card');
             allCards.forEach(card => {
                 const topicItems = card.querySelectorAll('.imgWrap .topic li');
-                topicItems.forEach(li => li.classList.remove('on')); // 모든 on 제거
+                topicItems.forEach(li => li.classList.remove('on'));
 
                 if (targetClass === 'all') {
-                    topicItems.forEach(li => li.classList.add('on')); // 모두 on 추가
+                    topicItems.forEach(li => li.classList.add('on'));
                 } else if (topicMap[targetClass]) {
                     const matchedTopic = card.querySelector(`.imgWrap .topic li.${topicMap[targetClass]}`);
                     if (matchedTopic) matchedTopic.classList.add('on');
@@ -118,11 +197,9 @@ setTimeout(() => {
         });
     });
 
-
-
-
-
-    // 2. 서브 swiper-slide 클릭
+    // =========================
+    // 서브 swiper-slide 클릭
+    // =========================
     document.querySelectorAll('.swiper-slide').forEach(slide => {
         slide.addEventListener('click', function () {
             const swiper = this.closest('.swiper');
@@ -136,11 +213,9 @@ setTimeout(() => {
         });
     });
 
-
-
-
-
-    // 검색기능
+    // =========================
+    // 검색 기능
+    // =========================
     const searchInput = document.querySelector('.searchInput');
     const cards = document.querySelectorAll('.cardWrap .card');
     const closeBtn = document.querySelector('.ic_close');
@@ -168,13 +243,12 @@ setTimeout(() => {
         searchInput.focus();
     });
 
-
-
-
-
-    // 카테고리 스크롤 시 상단 고정 관련
+    // =========================
+    // 스크롤 고정 처리
+    // =========================
     const sortWrap = document.querySelector('.sortWrap');
     const cardWrap = document.querySelector('.cardWrap');
+    const subConTitles = document.querySelectorAll('.subConTitle');
     let lastScrollY = window.scrollY;
 
     function adjustCardWrapPadding() {
@@ -190,20 +264,20 @@ setTimeout(() => {
 
     window.addEventListener('scroll', () => {
         const currentY = window.scrollY;
+
         if (currentY > lastScrollY + 10) {
             sortWrap.classList.add('scrollHide');
         } else if (currentY < lastScrollY - 2) {
             sortWrap.classList.remove('scrollHide');
         }
-        sortWrap.classList.toggle('scrolled', currentY > 0);
+
+        const isScrolled = currentY > 0;
+        sortWrap.classList.toggle('scrolled', isScrolled);
+        subConTitles.forEach(title => title.classList.toggle('scrolled', isScrolled));
+
         lastScrollY = currentY;
     });
 
-
-
-
-
-    // searchWrap 스크롤 이벤트
     const searchWrap = document.querySelector('.searchWrap');
     let lastSearchScrollY = window.scrollY;
 
@@ -218,29 +292,300 @@ setTimeout(() => {
     });
 }, 0);
 
+// =========================
+// 공통 DOM
+// =========================
+const homeWrap = document.querySelector('.homeContents .cardWrap');
+const starContents = document.querySelector('.starContents');
+const starCardWrap = starContents.querySelector('.cardWrap');
+const progressText = document.querySelector('.memorise .memorise-progress');
 
+// =========================
+// 암기 진행률
+// =========================
+function updateProgress() {
+    const total = homeWrap.querySelectorAll('.card').length;
+    let memorizedCount = 0;
 
+    homeWrap.querySelectorAll('.card').forEach(card => {
+        if (card.classList.contains('folded')) memorizedCount++;
+    });
 
+    const percent = Math.round((memorizedCount / total) * 100);
+    const memoriseWrap = document.querySelector('.memorise');
+    const progressBg = document.querySelector('.memorise .progress-bg');
 
+    if (percent === 0) {
+        progressText.textContent = '0%';
+        memoriseWrap.classList.add('zero');
+        memoriseWrap.classList.remove('complete');
+        progressBg.style.width = '0%';
+    } else if (percent === 100) {
+        progressText.textContent = '🎉 암기 완료';
+        memoriseWrap.classList.add('complete');
+        memoriseWrap.classList.remove('zero');
+        progressBg.style.width = '100%';
+    } else {
+        progressText.textContent = percent + '%';
+        memoriseWrap.classList.remove('zero', 'complete');
+        progressBg.style.width = percent + '%';
+    }
+}
+
+// =========================
 // 카드 암기 버튼
-document.querySelectorAll('.card').forEach(card => {
+// =========================
+homeWrap.querySelectorAll('.card').forEach(card => {
     const id = card.dataset.id;
-    const completeBtnWrap = card.querySelector('.completeBtn');
-    const titleWrap = card.querySelector('.titleWrap');
-    const title = titleWrap.querySelector('.title');
-    const titleEng = titleWrap.querySelector('.titleEng');
+    const completeBtn = card.querySelector('.completeBtn');
 
-    // 초기 상태 로드
     const isFolded = localStorage.getItem(`folded_${id}`) === 'true';
     if (isFolded) {
         card.classList.add('folded');
-        completeBtnWrap.classList.add('on');
+        completeBtn.classList.add('on');
     }
 
-    // 버튼 클릭 시 동작
-    completeBtnWrap.addEventListener('click', () => {
+    completeBtn.addEventListener('click', () => {
         const folded = card.classList.toggle('folded');
-        completeBtnWrap.classList.toggle('on', folded);
+        completeBtn.classList.toggle('on', folded);
         localStorage.setItem(`folded_${id}`, folded);
+        updateProgress();
     });
 });
+
+
+
+
+
+
+// =========================
+// 즐겨찾기 카드 생성
+// =========================
+function createStarCard(originCard) {
+    const clone = originCard.cloneNode(true);
+    clone.classList.remove('folded', 'on');
+    clone.querySelector('.completeBtn')?.classList.remove('on');
+    clone.querySelector('.starBtn')?.classList.add('on');
+    clone.classList.add('star-card');
+    return clone;
+}
+
+// 즐겨찾기 저장 / 불러오기
+function saveStarredCards() {
+    const starredIds = Array.from(homeWrap.querySelectorAll('.card.on'))
+        .map(card => card.dataset.id);
+    localStorage.setItem('starredCards', JSON.stringify(starredIds));
+}
+
+function updateNoStarredCard() {
+    const noStarredCard = document.querySelector('.noStarredCard');
+    if (!noStarredCard) return;
+
+    if (starCardWrap.children.length > 0) {
+        noStarredCard.classList.add('hidden');
+    } else {
+        noStarredCard.classList.remove('hidden');
+    }
+}
+
+// ⭐ 최종 단일 선언
+function loadStarredCards() {
+    const starredIds = JSON.parse(localStorage.getItem('starredCards') || '[]');
+
+    starredIds.forEach(id => {
+        const originalCard = homeWrap.querySelector(`.card[data-id="${id}"]`);
+        if (!originalCard) return;
+
+        originalCard.classList.add('on');
+        originalCard.querySelector('.starBtn')?.classList.add('on');
+
+        if (!starCardWrap.querySelector(`[data-id="${id}"]`)) {
+            const clone = createStarCard(originalCard);
+            starCardWrap.appendChild(clone);
+        }
+    });
+
+    updateNoStarredCard(); // ✅ 새로고침 대응
+}
+
+// 즐겨찾기 버튼 클릭
+document.addEventListener('click', e => {
+    const starBtn = e.target.closest('.starBtn');
+    if (!starBtn) return;
+
+    const card = starBtn.closest('.card');
+    if (!card || !homeWrap.contains(card)) return;
+
+    const cardId = card.dataset.id;
+
+    card.classList.toggle('on');
+    starBtn.classList.toggle('on');
+
+    if (card.classList.contains('on')) {
+        if (!starCardWrap.querySelector(`[data-id="${cardId}"]`)) {
+            const clone = createStarCard(card);
+            starCardWrap.appendChild(clone);
+        }
+    } else {
+        const target = starCardWrap.querySelector(`[data-id="${cardId}"]`);
+        if (target) target.remove();
+    }
+
+    saveStarredCards();
+    updateNoStarredCard();
+});
+
+
+
+
+/* =========================
+   퀴즈 모드
+========================= */
+const quizWrap = document.querySelector('.quizContents .cardWrap');
+const quizNavBtn = document.querySelector('.quizNav');
+let quizPool = []; // 남은 카드 풀
+let currentQuizCard = null;
+
+// quizNav 클릭 시 초기화
+quizNavBtn.addEventListener('click', () => {
+    // 기존 카드 제거
+    quizWrap.innerHTML = '';
+
+    // homeNav의 카드 중에서 quiz용 풀 생성
+    quizPool = Array.from(document.querySelectorAll('.homeContents .card'));
+
+    showNextQuizCard();
+});
+
+// 랜덤 카드 표시 함수
+function showNextQuizCard() {
+    if (quizPool.length === 0) return;
+
+    // 랜덤 인덱스 선택
+    const randIndex = Math.floor(Math.random() * quizPool.length);
+    const selectedCard = quizPool[randIndex];
+
+    // 현재 카드 업데이트
+    currentQuizCard = selectedCard.cloneNode(true);
+
+    // completeBtn 제거 또는 숨김
+    const completeBtn = currentQuizCard.querySelector('.completeBtn');
+    if (completeBtn) {
+        completeBtn.classList.remove('on'); // on 제거
+        completeBtn.style.display = 'none';  // 버튼 숨김
+    }
+
+    // folded 클래스 제거
+    currentQuizCard.classList.remove('folded', 'on');
+
+    // 기존 카드 제거 후 붙이기
+    quizWrap.innerHTML = '';
+    quizWrap.appendChild(currentQuizCard);
+
+    // topic과 recipeWrap에 quizHide 클래스 추가
+    currentQuizCard.querySelectorAll('.imgWrap .topic li, .recipeWrap *').forEach(el => {
+        el.classList.add('quizHide');
+    });
+}
+
+
+// =========================
+// 퀴즈 버튼 연결
+// =========================
+const quizShowAnswerBtn = document.querySelector('.answerBtn');
+const quizNextBtn = document.querySelector('.nextBtn');
+
+// 정답보기 버튼 클릭
+quizShowAnswerBtn.addEventListener('click', () => {
+    if (!currentQuizCard) return;
+    currentQuizCard.querySelectorAll('.imgWrap .topic li, .recipeWrap *').forEach(el => {
+        el.classList.add('show'); // quizHide는 그대로 두고 show 클래스 추가
+    });
+});
+
+// 다음문제 버튼 클릭
+quizNextBtn.addEventListener('click', () => {
+    showNextQuizCard();
+});
+
+
+
+
+
+// =========================
+// 하단 네비게이션
+// =========================
+const contents = document.querySelectorAll('.contents');
+const navBtns = document.querySelectorAll('.navBtn');
+const navWrap = document.querySelector('.btmNav');
+
+let lastScroll = 0;
+
+// ⭐ mainSort li.all 활성화 함수
+function activateMainSortAll() {
+    document.querySelectorAll('.mainSort li').forEach(li => li.classList.remove('on'));
+    document.querySelector('.mainSort li.all')?.classList.add('on');
+
+    document.querySelectorAll('.subSort .swiper').forEach(swiper => {
+        swiper.classList.remove('on');
+        swiper.querySelectorAll('.swiper-slide').forEach(slide => slide.classList.remove('on'));
+    });
+
+    const allSub = document.querySelector('.allSub');
+    if (allSub) {
+        allSub.classList.add('on');
+        const firstSlide = allSub.querySelector('.swiper-slide');
+        if (firstSlide) {
+            firstSlide.classList.add('on');
+            const filterClass = Array.from(firstSlide.classList).find(cls => filterKeys.includes(cls));
+            if (filterClass) filterCards(filterClass);
+        }
+    }
+
+    document.querySelectorAll('.card').forEach(card => {
+        const topicItems = card.querySelectorAll('.imgWrap .topic li');
+        topicItems.forEach(li => li.classList.add('on'));
+    });
+}
+
+navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        contents.forEach(c => c.classList.remove('on'));
+        navBtns.forEach(n => n.classList.remove('on'));
+
+        if (btn.classList.contains('homeNav')) {
+            document.querySelector('.homeContents').classList.add('on');
+        }
+        if (btn.classList.contains('starNav')) {
+            document.querySelector('.starContents').classList.add('on');
+            activateMainSortAll(); // ⭐ 추가
+        }
+        if (btn.classList.contains('quizNav')) {
+            document.querySelector('.quizContents').classList.add('on');
+            activateMainSortAll(); // ⭐ 추가
+        }
+
+        btn.classList.add('on');
+    });
+});
+
+// =========================
+// 스크롤로 네비게이션 숨기기/보이기
+// =========================
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScroll) {
+        navWrap.classList.add('hide');
+    } else {
+        navWrap.classList.remove('hide');
+    }
+
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+});
+
+// =========================
+// 초기 실행
+// =========================
+loadStarredCards();
+updateProgress();

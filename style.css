@@ -1,6 +1,109 @@
+.review-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 9999;
+    padding: 0 36px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    display: flex; /* 항상 flex */
+}
+
+.review-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+.review-box {
+    position: relative;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 32px 16px 72px 16px;
+    text-align: center;
+    width: 100%;
+    max-width: 648px;
+    transform: translateY(100px); /* 아래에서 시작 */
+    opacity: 0;
+    transition: all 0.3s;
+}
+.review-modal.show .review-box {
+    transform: translateY(0); /* 제자리 */
+    opacity: 1;
+}
+
+.review-modal .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.review-modal h3{
+    font-size: 16px;
+    font-weight: 400;
+    color: #494949;
+    margin-bottom: 8px;
+}
+.review-modal p{
+    font-size: 14px;
+    font-weight: 400;
+    color: #494949;
+    margin-bottom: 8px;
+}
+
+.review-buttons {
+    display: flex;
+    flex-direction: column; /* 세로 배치로 가독성 확보 */
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.rev-btn {
+    padding: 14px 0;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* 긍정 버튼: 브랜드 컬러 사용 */
+.rev-btn.positive {
+    background-color: #E5483D;
+    color: #fff;
+}
+
+.rev-btn.positive:active {
+    background-color: #c43d34;
+    transform: scale(0.98);
+}
+
+/* 부정 버튼: 연한 회색으로 부담 적게 */
+.rev-btn.negative {
+    background-color: #f2f2f2;
+    color: #888;
+}
+
+.rev-btn.negative:active {
+    background-color: #e8e8e8;
+}
+
+
+
+
+
+
 body {
     background-color: #f8f8f8;
     -ms-overflow-style: none;
+    padding-bottom: 80px;
+    position: relative;
+    /* padding-top: env(safe-area-inset-top); */
 }
 ::-webkit-scrollbar {
     display: none;
@@ -12,12 +115,55 @@ body {
 
 /* 콘텐츠 */
 .contents{
-    /* padding: 20px 20px 0px 20px; */
+    display: none;
     background-color: #f8f8f8;
     margin: 0 auto;
-    margin-bottom: 74px;
     max-width: 720px;
+    padding-top: env(safe-area-inset-top);
     position: relative;
+}
+.contents.on{
+    display: block;
+}
+
+.starContents, .quizContents {
+    margin-top: 72px;
+    position: relative;
+}
+.quizContents{
+    margin-bottom: 120px;
+}
+.starContents{
+    height: 40vh;
+}
+.starContents .cardWrap, .quizContents .cardWrap {
+    padding: 0 20px;
+}
+.starContents .cardWrap{
+    padding-bottom: 80px;
+}
+
+
+
+.subConTitle{
+    width: 100%;
+    max-width: 720px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background-color: #f8f8f8;
+    transition: all 0.1s;
+    /* padding-top: env(safe-area-inset-top); */
+}
+.subConTitle p{
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+    color: #494949;
+    padding: 24px 20px;
+}
+.subConTitle.scrolled{
+    border-bottom: 1px solid #DBDBDB;
 }
 
 
@@ -38,6 +184,9 @@ body {
 }
 .searchWrap.scrolled{
     border-bottom: 1px solid #DBDBDB;
+}
+.searchWrap .logo{
+    cursor: pointer;
 }
 .searchWrap .logo img{
     display: block;
@@ -79,6 +228,79 @@ body {
 }
 .searchInput::placeholder {
     color: #aaa;
+}
+
+.memorise {
+    position: relative; /* progress-bg 위치 위해 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* 기본 흰색 */
+    padding: 0px 12px;
+    height: 32px;
+    border-radius: 16px;
+    overflow: hidden; /* progress-bg가 넘치지 않도록 */
+    flex-shrink: 0;       /* 크기 줄어들지 않게 */
+    border: 1px solid #fff;
+}
+.memorise .progress-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; 
+    background-color: #E3F7D6;
+    z-index: 0;
+    transition: all 0.5s ease;
+    pointer-events: none; /* 클릭 방해 제거 */
+}
+.memorise .memorise-title{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    position: relative; /* progress-bg 위에 표시되도록 */
+    z-index: 1;
+}
+.memorise svg rect{
+    stroke: #52B908;
+    fill: #52B908;
+    stroke-width: 1.5px;
+}
+.memorise svg path{
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+.memorise .memorise-progress{
+    font-size: 14px;
+    font-weight: 400;
+    color: #52B908;
+}
+.memorise .memorise-text{
+    font-size: 14px;
+    font-weight: 400;
+    color: #52B908;
+}
+.memorise.zero svg rect,
+.memorise.zero svg path,
+.memorise.zero .memorise-progress,
+.memorise.zero .memorise-text {
+    fill: #fff;
+    stroke: #aaa;  /* SVG 선 색 */
+    color: #aaa;   /* 텍스트 색 */
+}
+.memorise.complete .progress-bg {
+    background-color: #52B908; /* 100%일 때 진한 초록 */
+}
+.memorise.complete svg path,
+.memorise.complete svg rect,
+.memorise.complete .memorise-progress,
+.memorise.complete .memorise-text {
+    color: #fff;
+    stroke: #fff;
+}
+.memorise.complete .memorise-title svg,
+.memorise.complete .memorise-text {
+    display: none;
 }
 
 
@@ -195,9 +417,6 @@ body {
 .sortWrap .subSort .swiper.on{
     display: block;
 }
-.sortWrap .subSort .swiper.allSub.on{
-    display: none;
-}
 .sortWrap .subSort .swiper-wrapper{
     display: flex;
 }
@@ -266,7 +485,7 @@ body {
 /* 카드 */
 .cardWrap {
     width: 100%;
-    padding: 0 20px;
+    padding: 164px 20px 0 20px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
@@ -317,124 +536,124 @@ body {
 
 /* 칵테일 이미지들 시작 */
 .cardWrap .card.manhattan .imgWrap .img{
-    background: url(img/manhattan.jpg) no-repeat center/cover;
+    background: url(img/manhattan.JPG) no-repeat center/cover;
 }
 .cardWrap .card.oldFashioned .imgWrap .img{
-    background: url(img/oldFashioned.jpg) no-repeat center/cover;
+    background: url(img/oldFashioned.JPG) no-repeat center/cover;
 }
 .cardWrap .card.newYork .imgWrap .img{
-    background: url(img/newYork.jpg) no-repeat center/cover;
+    background: url(img/newYork.JPG) no-repeat center/cover;
 }
 .cardWrap .card.whiskeySour .imgWrap .img{
-    background: url(img/whiskeySour.jpg) no-repeat center/cover;
+    background: url(img/whiskeySour.JPG) no-repeat center/cover;
 }
 .cardWrap .card.boulevardier .imgWrap .img{
-    background: url(img/boulevardier.jpg) no-repeat center/cover;
+    background: url(img/boule.JPG) no-repeat center/cover;
 }
 .cardWrap .card.rustyNail .imgWrap .img{
-    background: url(img/rustyNail.jpg) no-repeat center/cover;
+    background: url(img/rustyNail.JPG) no-repeat center/cover;
 }
 .cardWrap .card.sideCar .imgWrap .img{
-    background: url(img/sideCar.jpg) no-repeat center/cover;
+    background: url(img/sideCar.JPG) no-repeat center/cover;
 }
 .cardWrap .card.brandyAlex .imgWrap .img{
-    background: url(img/brandyAlex.jpg) no-repeat center/cover;
+    background: url(img/brandyAlex.JPG) no-repeat center/cover;
 }
 .cardWrap .card.honeymoon .imgWrap .img{
-    background: url(img/honeymoon.jpg) no-repeat center/cover;
+    background: url(img/honeymoon.JPG) no-repeat center/cover;
 }
 .cardWrap .card.blackRussian .imgWrap .img{
-    background: url(img/blackRussian.jpg) no-repeat center/cover;
+    background: url(img/blackRus.JPG) no-repeat center/cover;
 }
 .cardWrap .card.moscowMule .imgWrap .img{
-    background: url(img/moscowMule.jpg) no-repeat center/cover;
+    background: url(img/moscowMule.JPG) no-repeat center/cover;
 }
 .cardWrap .card.seabreeze .imgWrap .img{
-    background: url(img/seabreeze.jpg) no-repeat center/cover;
+    background: url(img/seabreeze.JPG) no-repeat center/cover;
 }
 .cardWrap .card.cosmopol .imgWrap .img{
-    background: url(img/cosmopol.jpg) no-repeat center/cover;
+    background: url(img/cosmopol.JPG) no-repeat center/cover;
 }
 .cardWrap .card.appleMartini .imgWrap .img{
-    background: url(img/appleMartini.jpg) no-repeat center/cover;
+    background: url(img/appleMartini.JPG) no-repeat center/cover;
 }
 .cardWrap .card.pinaCol .imgWrap .img{
-    background: url(img/pinaCol.jpg) no-repeat center/cover;
+    background: url(img/pinaCol.JPG) no-repeat center/cover;
 }
 .cardWrap .card.blueHaw .imgWrap .img{
-    background: url(img/blueHaw.jpg) no-repeat center/cover;
+    background: url(img/blueHawaii.JPG) no-repeat center/cover;
 }
 .cardWrap .card.maiTai .imgWrap .img{
-    background: url(img/maiTai.jpg) no-repeat center/cover;
+    background: url(img/maiTai.JPG) no-repeat center/cover;
 }
 .cardWrap .card.cubaLibre .imgWrap .img{
-    background: url(img/cubaLibre.jpg) no-repeat center/cover;
+    background: url(img/cubaLibre.JPG) no-repeat center/cover;
 }
 .cardWrap .card.daiquiri .imgWrap .img{
-    background: url(img/daiquiri.jpg) no-repeat center/cover;
+    background: url(img/daiquiri.JPG) no-repeat center/cover;
 }
 .cardWrap .card.bacardi .imgWrap .img{
-    background: url(img/bacardi.jpg) no-repeat center/cover;
+    background: url(img/bacardi.JPG) no-repeat center/cover;
 }
 .cardWrap .card.tequilaSun .imgWrap .img{
-    background: url(img/tequilaSun.jpg) no-repeat center/cover;
+    background: url(img/tequilaSun.JPG) no-repeat center/cover;
 }
 .cardWrap .card.margarita .imgWrap .img{
-    background: url(img/margarita.jpg) no-repeat center/cover;
+    background: url(img/margarita.JPG) no-repeat center/cover;
 }
 .cardWrap .card.dryMartini .imgWrap .img{
-    background: url(img/dryMartini.jpg) no-repeat center/cover;
+    background: url(img/dryMartini.JPG) no-repeat center/cover;
 }
 .cardWrap .card.negroni .imgWrap .img{
-    background: url(img/negroni.jpg) no-repeat center/cover;
+    background: url(img/negroni.JPG) no-repeat center/cover;
 }
 .cardWrap .card.singapore .imgWrap .img{
-    background: url(img/singapore.jpg) no-repeat center/cover;
+    background: url(img/singapore.JPG) no-repeat center/cover;
 }
 .cardWrap .card.ginFizz .imgWrap .img{
-    background: url(img/ginFizz.jpg) no-repeat center/cover;
+    background: url(img/ginFizz.JPG) no-repeat center/cover;
 }
 .cardWrap .card.longTea .imgWrap .img{
-    background: url(img/longTea.jpg) no-repeat center/cover;
+    background: url(img/longTea.JPG) no-repeat center/cover;
 }
 .cardWrap .card.apricot .imgWrap .img{
-    background: url(img/apricot.jpg) no-repeat center/cover;
+    background: url(img/apricot.JPG) no-repeat center/cover;
 }
 .cardWrap .card.grass .imgWrap .img{
-    background: url(img/grass.jpg) no-repeat center/cover;
+    background: url(img/grass.JPG) no-repeat center/cover;
 }
 .cardWrap .card.juneBug .imgWrap .img{
-    background: url(img/juneBug.jpg) no-repeat center/cover;
+    background: url(img/juneBug.JPG) no-repeat center/cover;
 }
 .cardWrap .card.pousse .imgWrap .img{
-    background: url(img/pousse.jpg) no-repeat center/cover;
+    background: url(img/pousse.JPG) no-repeat center/cover;
 }
 .cardWrap .card.b52 .imgWrap .img{
-    background: url(img/b52.jpg) no-repeat center/cover;
+    background: url(img/b52.JPG) no-repeat center/cover;
 }
 .cardWrap .card.kir .imgWrap .img{
-    background: url(img/kir.jpg) no-repeat center/cover;
+    background: url(img/kir.JPG) no-repeat center/cover;
 }
 .cardWrap .card.freshLeomon .imgWrap .img{
-    background: url(img/freshLeomon.jpg) no-repeat center/cover;
+    background: url(img/freshLeomon.JPG) no-repeat center/cover;
 }
 .cardWrap .card.virginFruit .imgWrap .img{
-    background: url(img/virginFruit.jpg) no-repeat center/cover;
+    background: url(img/virginFruit.JPG) no-repeat center/cover;
 }
 .cardWrap .card.healing .imgWrap .img{
-    background: url(img/healing.jpg) no-repeat center/cover;
+    background: url(img/healing.JPG) no-repeat center/cover;
 }
 .cardWrap .card.jindo .imgWrap .img{
-    background: url(img/jindo.jpg) no-repeat center/cover;
+    background: url(img/jindo.JPG) no-repeat center/cover;
 }
 .cardWrap .card.puppyLove .imgWrap .img{
-    background: url(img/puppyLove.jpg) no-repeat center/cover;
+    background: url(img/puppyLove.JPG) no-repeat center/cover;
 }
 .cardWrap .card.geumsan .imgWrap .img{
-    background: url(img/geumsan.jpg) no-repeat center/cover;
+    background: url(img/geumsan.JPG) no-repeat center/cover;
 }
 .cardWrap .card.gochang .imgWrap .img{
-    background: url(img/gochang.jpg) no-repeat center/cover;
+    background: url(img/gochang.JPG) no-repeat center/cover;
 }
 /* 칵테일 이미지들 끝 */
 
@@ -534,19 +753,27 @@ body {
 
 /* 암기 버튼 */
 .cardWrap .card .completeBtn{
-    width: 20px;
-    height: 20px;
+    width: 56px;
+    height: 56px;
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 0;
+    right: 0;
     transition: all 0.3s;
+}
+/* 즐겨찾기 영역에서 암기 버튼 숨김 */
+.starContents .cardWrap .card .completeBtn{
+    display: none;
+}
+.quizContents .cardWrap .card .completeBtn{
+    display: none;
 }
 .cardWrap .card .completeBtn.on svg rect{
     stroke: #52B908;
+    fill: #52B908;
     transition: all 0.3s;
 }
 .cardWrap .card .completeBtn.on svg path{
-    stroke: #52B908;
+    stroke: #fff;
     transition: all 0.3s;
 }
 
@@ -560,25 +787,218 @@ body {
     color: #dbdbdb;
 }
 
+/* 즐겨찾기 버튼 */
+.cardWrap .card .starBtn{
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s;
+}
+/* 즐겨찾기 영역에서 즐겨찾기 버튼 숨김 */
+.starContents .cardWrap .card .starBtn{
+    display: none;
+}
+.quizContents .cardWrap .card .starBtn{
+    display: none;
+}
+.cardWrap .card .starBtn.on svg rect{
+    stroke: #F58F0A;
+    fill: #F58F0A;
+    transition: all 0.3s;
+}
+.cardWrap .card .starBtn.on svg path{
+    stroke: #fff;
+    transition: all 0.3s;
+}
+/* 즐겨찾기추가안내 */
+.noStarredCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+.noStarredCard.hidden{
+    display: none;
+}
+.noStarredCard div{
+    display: flex;
+    align-items: center;
+}
+.noStarredCard div p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #777;
+}
+.noStarredCard .lineOne p:first-child{
+    margin-right: -12px;
+}
+.noStarredCard .lineOne p:last-child{
+    margin-left: -12px;
+}
+.noStarredCard .lineTwo{
+    margin-top: -8px;
+}
+
+
+
+
+/* 퀴즈 하단 정답 확인, 다음 문제 버튼 */
+.quizHide {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.quizHide.show{
+    opacity: 1;
+}
+.quizContents .answerNextBtnWrap{
+    width: 100%;
+    max-width: 720px;
+    padding: 16px 20px 0 20px;
+    display: flex;
+    gap: 16px;
+}
+.quizContents .answerNextBtnWrap .answerBtn,
+.quizContents .answerNextBtnWrap .nextBtn{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 16px 0;
+}
+.quizContents .answerNextBtnWrap .answerBtn{
+    background-color: #E5EEFF;
+    border: 1px solid #C2D7FF;
+    border-radius: 16px;
+    color: #3675EA;
+    font-size: 16px;
+    cursor: pointer;
+}
+.quizContents .answerNextBtnWrap .answerBtn img{
+    display: block;
+    width: 12px;
+    height: 10px;
+}
+.quizContents .answerNextBtnWrap .nextBtn{
+    background-color: #3675EA;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.quizContents .answerNextBtnWrap .nextBtn img{
+    display: block;
+    width: 8px;
+    height: 12px;
+}
+
+
+
+
+
+
+.topVoid{
+    width: 100%;
+    background-color: #f8f8f8;
+    height: 60px;
+    position: fixed;
+    z-index: 998;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+.btmNav{
+    width: 100%;
+    padding: 0 36px 40px;
+    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    z-index: 999;
+    transition: all 0.3s;
+}
+.btmNav.hide {
+    transform: translate(-50%, 120%);
+    opacity: 0;
+}
+.btmNav .navBtnWrap {
+    padding: 8px;
+    border-radius: 100px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.72);/* 반투명 필수 */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);/* iOS 필수 */
+    display: flex;
+    gap: 8px;
+}
+.navBtnWrap .navBtn{
+    width: 100%;
+    padding: 6px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 100px;
+}
+.navBtnWrap .navBtn p{
+    font-weight: 400;
+    font-size: 12px;
+    color: #777;
+}
+.navBtnWrap .homeNav.on{
+    background: rgba(229, 72, 61, 0.08);
+}
+.navBtnWrap .homeNav.on p{
+    color: #E5483D;
+}
+.navBtnWrap .homeNav.on svg path{
+    stroke: #E5483D;
+}
+.navBtnWrap .quizNav.on{
+    background: rgba(54, 117, 234, 0.08);
+}
+.navBtnWrap .quizNav.on p{
+    color: #3675EA;
+}
+.navBtnWrap .quizNav.on svg path{
+    stroke: #3675EA;
+}
+.navBtnWrap .starNav.on{
+    background: rgba(245, 143, 10, 0.08);
+}
+.navBtnWrap .starNav.on p{
+    color: #F58F0A;
+}
+.navBtnWrap .starNav.on svg path{
+    stroke: #F58F0A;
+}
+
 
 
 
 
 /* adzone */
-.adZone{
+/* .adZone{
     position: fixed;
     bottom: 0;
-    z-index: -1;
+    z-index: 1;
+    background-color: #f8f8f8;
     width: 100%;
-    height: 74px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.adZone svg{
-    width: 24px;
-    height: 24px;
-}
+    height: 80px;
+} */
 
 
 
@@ -587,47 +1007,73 @@ body {
 /* 반응형 */
 @media (min-width: 580px) {
 
-.contents{
-    margin-bottom: 106px;
+    .searchWrap .logo img{
+        display: block;
+        height: 40px;
+        width: 40px;
+    }
+    .searchBtn{
+        height: 40px;
+        border-radius: 20px;
+    }
+    .searchWrap img.ic_search{
+        width: 18px;
+        height: 18px;
+    }
+    .searchWrap img.ic_close{
+        width: 14px;
+        height: 14px;
+    }
+    .searchInput{
+        font-size: 16px;
+    }
+    .memorise {
+        height: 40px;
+        border-radius: 20px;
+    }
+    .memorise .memorise-progress{
+        font-size: 16px;
+    }
+    .memorise .memorise-text{
+        font-size: 16px;
+    }
+
+    .sortWrap{
+        padding: 72px 20px 12px 20px;
+    }
+    .sortWrap .mainSort li{
+        padding: 12px 0;
+        border-radius: 16px;
+    }
+
+    .cardWrap {
+        padding: 184px 20px 0 20px;
+        grid-template-columns: 1fr 1fr;
+    }
+    .cardWrap .card .imgWrap .img{
+        height: 160px;
+    }
+
+    .quizContents .answerNextBtnWrap{
+        width: 51.5%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        flex-direction: column;
+    }
+
+    /* .adZone{
+        height: 106px;
+    } */
 }
 
-.searchWrap .logo img{
-    display: block;
-    height: 40px;
-    width: 40px;
-}
-.searchBtn{
-    height: 40px;
-    border-radius: 20px;
-}
-.searchWrap img.ic_search{
-    width: 18px;
-    height: 18px;
-}
-.searchWrap img.ic_close{
-    width: 14px;
-    height: 14px;
-}
-.searchInput{
-    font-size: 16px;
-}
+@media (min-width: 720px) {
+    .btmNav {
+        width: 100%;
+    }
 
-.sortWrap{
-    padding: 72px 20px 12px 20px;
-}
-.sortWrap .mainSort li{
-    padding: 12px 0;
-    border-radius: 16px;
-}
-
-.cardWrap {
-    grid-template-columns: 1fr 1fr;
-}
-.cardWrap .card .imgWrap .img{
-    height: 160px;
-}
-
-.adZone{
-    height: 106px;
-}
+    .btmNav .navBtnWrap {
+        max-width: 648px;
+        margin: 0 auto;
+    }
 }
