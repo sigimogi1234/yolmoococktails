@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     /* ==========================
-       퀴즈 다음 버튼 클릭 (5회)
+       퀴즈 다음 버튼 클릭 (8회)
     ========================== */
     document.addEventListener('click', async (e) => {
         const nextBtn = e.target.closest('.answerNextBtnWrap .nextBtn');

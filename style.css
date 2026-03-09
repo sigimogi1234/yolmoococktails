@@ -98,12 +98,25 @@
 
 
 
+
 body {
+    margin: 0; /* 브라우저 기본 여백 제거 (광고 밀착 및 좌우 스크롤 방지) */
     background-color: #f8f8f8;
-    -ms-overflow-style: none;
+    -ms-overflow-style: none; /* IE/Edge 스크롤바 숨기기 */
+    padding-top: env(safe-area-inset-top); /* 노치 영역 보호 */
     padding-bottom: 80px;
     position: relative;
-    /* padding-top: env(safe-area-inset-top); */
+    overflow-x: hidden; /* 혹시 모를 좌우 흔들림 방지 */
+    transition: all 0.3s ease; /* 여백이 생길 때 부드럽게 애니메이션 */
+}
+
+/* 광고 노출 시 추가될 스타일 */
+body.ad-visible {
+    /* 기존 노치 여백 + 광고 높이(약 60px)를 합쳐서 콘텐츠가 안 가려지게 함 */
+    padding-top: calc(env(safe-area-inset-top) + 60px);
+}
+body.ad-visible .subConTitle {
+    top: calc(env(safe-area-inset-top) + 60px); /* 60px은 광고 배너의 높이 */
 }
 ::-webkit-scrollbar {
     display: none;
@@ -119,7 +132,7 @@ body {
     background-color: #f8f8f8;
     margin: 0 auto;
     max-width: 720px;
-    padding-top: env(safe-area-inset-top);
+    /* padding-top: env(safe-area-inset-top); */
     position: relative;
 }
 .contents.on{
@@ -127,7 +140,7 @@ body {
 }
 
 .starContents, .quizContents {
-    margin-top: 72px;
+    padding-top: 72px;
     position: relative;
 }
 .quizContents{
@@ -150,15 +163,14 @@ body {
     max-width: 720px;
     height: 72px;
     position: fixed;
-    top: 0;
+    top: env(safe-area-inset-top); /* 0 대신 노치 영역을 기본값으로 설정 */
     z-index: 999;
     background-color: #f8f8f8;
-    transition: all 0.1s;
+    transition: all 0.3s;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px 20px;
-    /* padding-top: env(safe-area-inset-top); */
 }
 .subConTitle p{
     text-align: left;
@@ -951,6 +963,7 @@ body {
     transition: all 0.3s;
     white-space: nowrap;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    display: block;
 }
 .btmNav .navBtnWrap {
     width: 100%;
@@ -1152,5 +1165,17 @@ body {
     .btmNav .navBtnWrap {
         max-width: 648px;
         margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    body.ad-visible {
+        /* 태블릿 배너 높이 약 90px 적용 */
+        padding-top: calc(env(safe-area-inset-top) + 90px);
+    }
+
+    body.ad-visible .subConTitle {
+        /* 타이틀 위치도 90px 아래로 */
+        top: calc(env(safe-area-inset-top) + 90px);
     }
 }
