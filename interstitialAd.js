@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { AdMob } = window.Capacitor.Plugins;
 
     let categoryClickCount = 0;
-    let quizClickCount = 0;
+    let navClickCount = 0;
 
     // 전면광고 미리 로드
     async function preloadAd() {
@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     /* ==========================
-       카테고리 클릭 (5회)
+        카테고리 클릭 (7회)
     ========================== */
     document.querySelectorAll('.mainSort li').forEach(item => {
         item.addEventListener('click', async () => {
             categoryClickCount++;
 
-            if (categoryClickCount >= 5) {
+            if (categoryClickCount >= 7) {
                 categoryClickCount = 0;
                 await showInterstitialAd();
             }
@@ -47,18 +47,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     /* ==========================
-       퀴즈 다음 버튼 클릭 (8회)
+        하단네비 클릭 (7회)
     ========================== */
+    document.querySelectorAll('.navBtn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+
+            // 🔥 퀴즈 중이면 광고 안뜨게 (추천)
+            if (cardQuizWrap.classList.contains('on')) return;
+
+            navClickCount++;
+
+            if (navClickCount >= 7) { // 👉 숫자 조절 가능
+                navClickCount = 0;
+                await showInterstitialAd();
+            }
+        });
+    });
+
+    /* ==========================
+        🔥 전면광고 - 처음으로
+    ========================== */
+
+    // 처음으로
     document.addEventListener('click', async (e) => {
-        const nextBtn = e.target.closest('.answerNextBtnWrap .nextBtn');
-        if (!nextBtn) return;
+        const returnBtn = e.target.closest('.returnBtn');
+        if (!returnBtn) return;
 
-        quizClickCount++;
-
-        if (quizClickCount >= 8) {
-            quizClickCount = 0;
-            await showInterstitialAd();
-        }
+        await showInterstitialAd();
     });
 });
 

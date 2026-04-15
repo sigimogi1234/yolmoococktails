@@ -101,6 +101,7 @@
 
 body {
     margin: 0; /* 브라우저 기본 여백 제거 (광고 밀착 및 좌우 스크롤 방지) */
+    padding-top: env(safe-area-inset-top);
     background-color: #f8f8f8;
     -ms-overflow-style: none; /* IE/Edge 스크롤바 숨기기 */
     padding-top: env(safe-area-inset-top); /* 노치 영역 보호 */
@@ -747,24 +748,39 @@ body.ad-visible .subConTitle {
 .cardWrap .card .recipeWrap .recipe li p.vol{
     font-weight: 600;
 }
-.cardWrap .card .recipeWrap .hrz{
+.note {
+    margin-top: 8px;
+    position: relative;
+}
+.note .noteInput {
     width: 100%;
-    height: 1px;
-    border: 0.5px dashed #DBDBDB;
-}
-.cardWrap .card .recipeWrap .note{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-.cardWrap .card .recipeWrap .note li{
-    display: flex;
-    gap: 4px;
-}
-.cardWrap .card .recipeWrap .note li p{
+    padding: 8px 12px 20px 12px;
+    min-height: 48px;
+    color: #777777;
+    border: 1px solid #f2f2f2;
+    border-radius: 8px;
     font-size: 14px;
     font-weight: 400;
-    color: #777777;
+    outline: none;
+    resize: none; /* 크기 조절 핸들 제거 */
+    overflow: hidden;
+}
+.note .noteInput:focus{
+    text-decoration: underline;
+    border: 1px solid #dbdbdb;
+}
+.noteStatus {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 10px;
+    color: #aaa;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.noteStatus.show {
+    opacity: 1;
 }
 
 /* 암기 버튼 */
@@ -794,8 +810,9 @@ body.ad-visible .subConTitle {
 }
 
 /* 암기버튼 on이면 안보이게 */
-.card.folded .imgWrap,
-.card.folded .recipeWrap{
+.card.folded .imgWrap, 
+.card.folded .recipeWrap, 
+.card.folded .note{
     display: none;
 }
 .cardWrap .card.folded .titleWrap .title,
@@ -864,8 +881,69 @@ body.ad-visible .subConTitle {
 
 
 
-
+/* 퀴즈시작 버튼 */
+.quizContents .quizStartWrap{
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+.quizContents .quizStartWrap.on{
+    display: flex;
+}
+.quizContents .quizStartWrap p{
+    font-size: 16px;
+    font-weight: 400;
+}
+.quizContents .quizStartWrap img{
+    display: block;
+    padding: 18px;
+    cursor: pointer;
+}
+.quizContents .quizStartWrap .quizSettingWrap{
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+.quizContents .quizStartWrap .quizSettingWrap .quizNumBtn, .quizTimeBtn{
+    width: 100%;
+    background-color: #E5EEFF;
+    border: 1px solid #C2D7FF;
+    border-radius: 16px;
+    color: #3675EA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.quizContents .quizStartWrap .quizStartBtn{
+    width: 100%;
+    background-color: #3675EA;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 16px 0;
+    text-align: center;
+}
 /* 퀴즈 하단 정답 확인, 다음 문제 버튼 */
+.quizContents .cardQuizWrap{
+    display: none;
+    flex-direction: column;
+    position: relative;
+    gap: 16px;
+}
+.quizContents .cardQuizWrap.on{
+    display: flex;
+}
+.quizContents .note {
+    display: none !important;
+}
+
 .quizHide {
     opacity: 0;
     transition: all 0.5s ease;
@@ -873,10 +951,156 @@ body.ad-visible .subConTitle {
 .quizHide.show{
     opacity: 1;
 }
+
+/* 퀴즈 진행 상황바 */
+.quizContents .cardQuizWrap .quizHUD{
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    padding: 0 20px;
+}
+.quizContents .cardQuizWrap .quizHUD .progressBar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.quizContents .cardQuizWrap .quizHUD .progressBar .progress {
+    width: 50%;
+    height: 100%;
+    background-color: #3675EA;
+    transition: width 0.3s ease;
+}
+.quizContents .cardQuizWrap .quizHUD .numCountTimerWrap{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.quizContents .cardQuizWrap .quizHUD .timerWrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.quizContents .cardQuizWrap .quizHUD .timerWrap .timer img{
+    display: block;
+    width: 14px;
+    height: 14px;
+
+}
+.quizContents .cardQuizWrap .quizHUD .timerWrap .timeText{
+    font-size: 14px;
+    color: #3675EA;
+    font-weight: 400;
+}
+.quizContents .cardQuizWrap .quizHUD .quizNumCount{
+    font-size: 14px;
+    color: #3675EA;
+    font-weight: 400;
+}
+
+
+/* 퀴즈 이미지 기본 */
+.quizContents .card .imgWrap .img {
+    display: block;
+    /* CSS filter blur는 끕니다 */
+    filter: none !important; 
+    transition: filter 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ❌ 촌스러운 블러 대신 사용하는 가림막 (유리 효과) */
+.quizContents .card .imgWrap .img::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    /* 핵심: 유리 효과 (배경 흐림) */
+    background: rgba(255, 255, 255, 0.4); /* 흰색 반투명 */
+    backdrop-filter: blur(12px); /* 뒤쪽을 아주 강력하게 흐림 */
+    -webkit-backdrop-filter: blur(12px); /* 사파리/안드로이드 웹뷰 필수 */
+    border-radius: 8px;
+    /* 초기 상태: 가림막 보임 */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+/* ✅ 정답 확인 시 가림막 숨김 */
+.quizContents .card.show-answer .imgWrap .img::after {
+    opacity: 0;
+    pointer-events: none; /* 클릭 방지 */
+}
+
+
+/* 객관식 리스트 스타일 */
+.quiz-options {
+    list-style: none;
+    padding: 0 20px;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+/* 레시피 모드일 때는 1열로 변경 */
+.quiz-options.recipe-mode {
+    flex-direction: column;
+}
+
+.quiz-options li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px;
+    color: #494949;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+/* 정답 확인 후 나머지 비활성 보기들 */
+.quiz-options.show-result li:not(.correct):not(.wrong) {
+    background-color: #f2f2f2 !important;
+    color: #aaa !important;
+    border-color: #f2f2f2 !important;
+}
+
+/* 선택 시 상태 */
+.quiz-options li.selected {
+    border-color: #C2D7FF;
+    background: #E5EEFF;
+    color: #3675EA;
+    font-weight: 400;
+}
+
+/* 정답/오답 결과 상태 */
+.quiz-options li.correct {
+    background: #3675EA !important;
+    color: #fff !important;
+    border-color: #3675EA !important;
+}
+
+.quiz-options li.wrong {
+    background-color: #FFEBEA !important;
+    color: #E5483D !important;
+    border: 1px solid #FFC3BE !important;
+}
+
 .quizContents .answerNextBtnWrap{
     width: 100%;
     max-width: 720px;
-    padding: 16px 20px 0 20px;
+    padding: 0 20px;
     display: flex;
     gap: 16px;
 }
@@ -914,7 +1138,111 @@ body.ad-visible .subConTitle {
     width: 8px;
     height: 12px;
 }
+/* 정답일 때 버튼 스타일 */
 
+/* 오답일 때 버튼 스타일 */
+.answerBtn.wrong-btn {
+    background-color: #FFEBEA !important;
+    color: #E5483D !important;
+    border: 1px solid #FFC3BE !important;
+}
+.answerBtn.wrong-btn svg path {
+    stroke: #E5483D !important;
+}
+
+/* 버튼 내부 텍스트 스타일 유지 */
+.answerText {
+    transition: all 0.2s;
+}
+
+
+
+/* 퀴즈 서머리 */
+.quizAgainBtnWrap{
+    width: 100%;
+    max-width: 720px;
+    padding: 0 20px;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+}
+.quizAgainBtnWrap.on{
+    display: flex;
+}
+.quizAgainBtnWrap .quizSummary{
+    width: 100%;
+    padding: 24px 24px;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+.quizAgainBtnWrap .quizSummary>div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: top;
+    justify-content: center;
+    align-items: center;
+}
+.hrz{
+    width: 100%;
+    border: 0.5px dashed #dbdbdb;
+}
+.quizAgainBtnWrap .quizSummary .text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #494949;
+    text-align: center;
+}
+.quizAgainBtnWrap .quizSummary .title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #3675EA;
+    white-space: nowrap;
+}
+.quizAgainBtnWrap .quizAgainBtn{
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+/* .quizAgainBtnWrap .quizAgainBtn .againBtn{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #E5EEFF;
+    border: 1px solid #C2D7FF;
+    border-radius: 16px;
+    color: #3675EA;
+    cursor: pointer;
+    padding: 16px 0;
+} */
+.quizAgainBtnWrap .quizAgainBtn .returnBtn{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #3675EA;
+    border-radius: 16px;
+    color: #fff;
+    cursor: pointer;
+    padding: 16px 0;
+}
+.quizAgainBtnWrap .quizAgainBtn p{
+    font-size: 16px;
+    font-weight: 400;
+}
+.quizAgainBtnWrap .quizAgainBtn img{
+    display: block;
+    width: 14px;
+    height: 14px;
+}
 
 
 
@@ -1139,12 +1467,12 @@ body.ad-visible .subConTitle {
         height: 160px;
     }
 
-    .quizContents .answerNextBtnWrap{
-        width: 51.5%;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        flex-direction: column;
+    .quiz-options {
+    width: 51.5%;
+    position: absolute;
+    right: 0;
+    bottom: 69px;
+    flex-direction: column;
     }
 
     /* .adZone{

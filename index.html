@@ -39,17 +39,96 @@
         <div class="subConTitle quizTitle">
             <p>퀴즈</p>
         </div>
-        <div class="cardWrap">
-            
-        </div>
-        <div class="answerNextBtnWrap">
-            <div class="answerBtn">
-                <img src="img/answerBtn.svg" alt="">
-                <div class="answerText">정답 확인</div>
+        <div class="quizStartWrap on">
+            <div class="quizSettingWrap">
+                <div class="quizNumBtn">
+                    <img class="minusIcon" src="img/ic_minus.svg" alt="">
+                    <p>총 10문제</p>
+                    <img class="plusIcon" src="img/ic_plus.svg" alt="">
+                </div>
+                <div class="quizTimeBtn">
+                    <img class="minusIcon" src="img/ic_minus.svg" alt="">
+                    <p>제한시간 60초</p>
+                    <img class="plusIcon" src="img/ic_plus.svg" alt="">
+                </div>
             </div>
-            <div class="nextBtn">
-                <div class="nextText">다음 문제</div>
-                <img src="img/nextBtn.svg" alt="">
+            <div class="quizStartBtn">
+                <p>퀴즈 시작</p>
+            </div>
+        </div>
+        <div class="cardQuizWrap">
+            <div class="quizHUD">
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+                <div class="numCountTimerWrap">
+                    <div class="quizNumCount">
+                        1/10
+                    </div>
+                    <div class="timerWrap">
+                    <div class="timer">
+                        <img src="img/ic_clock.svg" alt="">
+                    </div>
+                    <div class="timeText">
+                        60초
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardWrap">
+                
+            </div>
+            <ul class="quiz-options">
+
+            </ul>
+            <div class="answerNextBtnWrap">
+                <div class="answerBtn">
+                    <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.500038 3.83333L5.30004 10.5L12.5 0.5" stroke="#3675EA" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <div class="answerText">정답 확인</div>
+                </div>
+                <div class="nextBtn">
+                    <div class="nextText">다음 문제</div>
+                    <img src="img/nextBtn.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="quizAgainBtnWrap">
+            <div class="quizSummary">
+                <div class="answerPercent">
+                    <p class="percentTitle title">
+                        정답률
+                    </p>
+                    <p class="percentText text">
+                        60%(6/10)
+                    </p>
+                </div>
+                <div class="hrz"></div>
+                <div class="timeSpent">
+                    <p class="timeTitle title">
+                        소요시간
+                    </p>
+                    <p class="timeText text">
+                        30초
+                    </p>
+                </div>
+                <div class="hrz"></div>
+                <div class="wrongList">
+                    <p class="wrongTitle title">
+                        틀린 문제
+                    </p>
+                    <p class="wrongText text">
+                        모히또, 쿠바리브레, 올드패션드, 롱 아일랜드 아이스티
+                    </p>
+                </div>
+            </div>
+            <div class="quizAgainBtn">
+                <div class="returnBtn">
+                    <img src="img/ic_return.svg" alt="">
+                    <p>처음으로</p>
+                </div>
             </div>
         </div>
         <div class="topVoid"></div>
@@ -251,14 +330,11 @@
                             <p class="vol">1 dash</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>칵테일 글라스인데 스터 기법</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -314,14 +390,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>설탕 먼저 넣고 앙고스투라 비터스, 탄산수로 설탕 녹인 후 얼음 넣고 기주 넣고 빌드 (쉐이킹 기법이 없을 때 생긴 오래된 칵테일)</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -378,6 +451,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -433,14 +510,11 @@
                             <p class="vol">1 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>원래 레시피 : 탄산수 빼고 계란흰자 넣고 드라이 쉐이킹 후 얼음 넣고 쉐이킹</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -491,18 +565,11 @@
                             <p class="vol">1 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>올드패션드 글라스인데 스터 기법</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>네그로니와 비슷한 레시피</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -547,14 +614,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>유일한 스카치 위스키 칵테일</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -590,7 +654,7 @@
                     <ul class="recipe">
                         <li>
                             <p>-</p>
-                            <p>브랜드</p>
+                            <p>브랜디</p>
                             <p class="vol">1 oz</p>
                         </li>
                         <li>
@@ -605,6 +669,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -655,18 +723,11 @@
                             <p class="vol">3/4 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>크렘 드 카카오 Brown / White 유의</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>브랜디 초코 우유로 외우기 (민트 초코 우유는 그라스호퍼 칵테일)</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -721,14 +782,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>유일한 애플 브랜디 칵테일</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -774,6 +832,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -825,6 +887,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -876,6 +942,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -932,6 +1002,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -982,14 +1056,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>라임 주스 1/3 oz로 줄이고 트리플섹 1/3oz 넣으면 전통주 칵테일 풋사랑(Puppy Love)</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1041,6 +1112,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1097,6 +1172,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1163,6 +1242,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1214,6 +1297,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1263,14 +1350,11 @@
                             <p class="vol">1 tsp</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>설탕을 그레나딘 시럽으로 바꾸면 바카디 칵테일</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1320,18 +1404,11 @@
                             <p class="vol">1 tsp</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>무조건 바카디 화이트럼 사용</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>그레나딘 시럽을 설탕으로 바꾸면 다이키리</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1382,6 +1459,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1433,6 +1514,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1478,14 +1563,11 @@
                             <p class="vol">1/3 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>칵테일 글라스인데 스터 기법</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1536,14 +1618,11 @@
                             <p class="vol">3/4 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>불바디에와 비슷한 레시피</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1604,18 +1683,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>체리 브랜디 리큐르 부은 후 젓지 않기 (탄산수 까지만 저은 후 체리 리큐르 그냥 붓고 끝)</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>체리 브랜디 리큐르만 빼면 진 피즈</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1671,14 +1743,11 @@
                             <p class="vol">Fill</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>체리 브랜디 리큐르만 넣으면 싱가포르 슬링</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1749,14 +1818,11 @@
                             <p class="vol">Fill</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>조주기능사에서는 진 베이스 칵테일이라서 진을 제일 먼저 넣기</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1811,14 +1877,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>진이 너무 소량이라서 리큐르 베이스 칵테일</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1868,14 +1931,11 @@
                             <p class="vol">1 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>민트 초코 우유로 외우기 (브랜디 초코 우유는 브랜디 알렉산더)</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -1936,22 +1996,11 @@
                             <p class="vol">2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>미도리가 없는 경우 일반 멜론 리큐르 사용</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>콜린스 글라스인데 쉐이크 기법 사용 (양이 많아서 쉐이킹 할 때 주의)</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>파인애플 체리 가니쉬는 무조건 파인애플 주스 넣기</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2001,18 +2050,11 @@
                             <p class="vol">1/3 oz (1/3 part)</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>1:1:1 비율 맞추기 위한 용량 (순서 중요!)</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>B-52와 글라스가 다르니 주의</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2062,18 +2104,11 @@
                             <p class="vol">3/4 oz (1/3 part)</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>1:1:1 비율 맞추기 위한 용량 (순서 중요!)</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>푸스 카페와 글라스 다르니 주의</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2119,18 +2154,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>와인은 냉장보관</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>유일한 와인 베이스 칵테일</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2181,22 +2209,11 @@
                             <p class="vol">Fill</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>Squash : 탄산있음 / Ade : 탄산 없음</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>레몬 착즙으로 설탕 먼저 녹여주고 탄산수 Fill</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>유일하게 설탕 2 tsp & 직접 레몬 착즙</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2262,18 +2279,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>주스 5가지 이상 들어가면 Punch</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>파인애플 체리 가니쉬는 무조건 파인애플 주스 사용</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2310,7 +2320,7 @@
                     <ul class="recipe">
                         <li>
                             <p>-</p>
-                            <p>감홍로 (양념치킨 향)</p>
+                            <p>감홍로</p>
                             <p class="vol">1 1/2 oz</p>
                         </li>
                         <li>
@@ -2330,6 +2340,10 @@
                         </li>
                     </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2365,7 +2379,7 @@
                     <ul class="recipe">
                         <li>
                             <p>-</p>
-                            <p>진도 홍주 (소주 베이스)</p>
+                            <p>진도 홍주</p>
                             <p class="vol">1 oz</p>
                         </li>
                         <li>
@@ -2384,14 +2398,11 @@
                             <p class="vol">1/2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>유일하게 크렘 드 민트 화이트 / 청포도 주스 / 라즈베리 시럽 사용</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2447,14 +2458,11 @@
                             <p class="vol">1/3 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>라임 주스 1/2 oz로 줄이고 트리플섹 빼면 애플 마티니</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2509,14 +2517,11 @@
                             <p class="vol">1 tsp</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>주스류들 중 유일하게 티스푼 사용</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2566,18 +2571,11 @@
                             <p class="vol">2 oz</p>
                         </li>
                     </ul>
-                    <div class="hrz"></div>
-                    <ul class="note">
-                        <li>
-                            <p>*</p>
-                            <p>전통주 중 유일하게 다른 글라스와 기법 사용</p>
-                        </li>
-                        <li>
-                            <p>*</p>
-                            <p>유일한 스프라이트 사용 칵테일</p>
-                        </li>
-                    </ul>
                 </div>
+                <ul class="note">
+                    <textarea class="noteInput" placeholder="나만의 메모를 남겨보세요"></textarea>
+                    <div class="noteStatus">저장됨</div>
+                </ul>
                 <div class="completeBtn">
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="16.5538" y="16.5538" width="22.8923" height="22.8923" rx="11.4462" stroke="#DBDBDB"
@@ -2655,13 +2653,13 @@
         </div>
     </div>
 
-<div class="appPopup">
-    <div class="popupBox">
-        <p>이 기능은 앱에서 이용 가능합니다.<br>앱을 다운로드하세요.</p>
-        <a class="downloadBtn">앱 다운로드</a>
-        <button class="closePopup">닫기</button>
+    <div class="appPopup">
+        <div class="popupBox">
+            <p>이 기능은 앱에서 이용 가능합니다.<br>앱을 다운로드하세요.</p>
+            <a class="downloadBtn">앱 다운로드</a>
+            <button class="closePopup">닫기</button>
+        </div>
     </div>
-</div>
 
     <!-- <div class="adZone">
     </div> -->
